@@ -6,16 +6,32 @@
 <title>The Fleet — Blackwell GPUs & Synology vaults | DiabeticNode</title>
 <meta name="description" content="Why OpenDiabetic cooks on RTX PRO 6000 Blackwell GPUs and stores on Synology NAS: 97GB VRAM per card to slow-cook 27B anchors, owned silicon at sovereign-compute cost, and a vault that keeps PHI on the box. The honest hardware breakdown.">
 <link rel="canonical" href="https://diabeticnode.com/the-fleet">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0B0F14">
+<meta name="author" content="OpenDiabetic">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="DiabeticNode">
+<meta property="og:url" content="https://diabeticnode.com/the-fleet">
+<meta property="og:title" content="The Fleet — Blackwell GPUs & Synology vaults | DiabeticNode">
+<meta property="og:description" content="Why OpenDiabetic cooks on RTX PRO 6000 Blackwell GPUs and stores on Synology NAS: 97GB VRAM per card to slow-cook 27B anchors, owned silicon at sovereign cost, and a vault that keeps PHI on the box.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@opendiabetics">
+<meta name="twitter:title" content="The Fleet — Blackwell GPUs & Synology vaults | DiabeticNode">
+<meta name="twitter:description" content="Why Blackwell, why Synology, why sovereign. The honest hardware breakdown.">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle","name":"The Fleet — Blackwell GPUs & Synology vaults",
  "url":"https://diabeticnode.com/the-fleet","inLanguage":"en","dateModified":"2026-06-21",
- "publisher":{"@type":"Organization","name":"OpenDiabetic","url":"https://opendiabetic.com"}}
+ "publisher":{"@type":"Organization","name":"OpenDiabetic","url":"https://opendiabetic.com",
+   "parentOrganization":{"@type":"Organization","name":"Swarm and Bee LLC","legalName":"Swarm and Bee LLC","alternateName":"Swarm & Bee AI",
+     "identifier":[{"@type":"PropertyValue","propertyID":"SAM UEI","value":"L9EXVH9L9VU6"},{"@type":"PropertyValue","propertyID":"CAGE","value":"20YM3"},{"@type":"PropertyValue","propertyID":"DUNS","value":"138652395"}]}},
+ "sameAs":["https://opendiabetic.com","https://diabeticdocs.com","https://diabeticnode.com","https://x.com/opendiabetics"]}
 </script>
 </head>
 <body>
 <header>
-  <nav class="top"><strong>🐝 DiabeticNode</strong>
+  <nav class="top"><strong><span class="bee" aria-hidden="true">🐝</span> DiabeticNode</strong>
     <a href="/">Overview</a> <a href="/the-fleet">The Fleet</a> <a href="/the-edge">The Edge</a>
     <a href="https://diabeticdocs.com">Docs</a>
   </nav>
@@ -42,7 +58,7 @@ models trivial. More headroom = bigger, more honest cooks. It's the most VRAM-pe
 <tr><td>Compute</td><td>sm_120, CUDA 13</td><td>modern attention via SDPA; Triton JITs for the arch</td></tr>
 <tr><td>Ownership</td><td>ours</td><td>marginal cost ≈ kWh, not cloud markup</td></tr>
 </table>
-<p class="why" style="background:#fdf6ec;border-left-color:#b9770e"><b>Honest note:</b> Blackwell is new
+<p class="why"><b>Honest note:</b> Blackwell is new
 silicon. Prebuilt <code>flash_attn</code>/<code>xformers</code> kernels don't ship sm_120 yet, so we cook
 with torch-native <b>SDPA</b> attention. We caught that at canary, not mid-burn — and wrote it down. →
 <a href="https://diabeticdocs.com/crockpot-cook">Crockpot Cook</a></p>
@@ -72,8 +88,27 @@ diabetic's desk. Receipts flow back up; PHI never does. That hand-off is the who
 <a href="/the-edge">The Edge</a></p>
 
 <footer>
-  <p>The cook tier of <a href="https://opendiabetic.com">OpenDiabetic</a>. How cooks run:
-  <a href="https://diabeticdocs.com/crockpot-cook">DiabeticDocs → Crockpot Cook</a>.</p>
+  <div class="wrap">
+    <p class="tagline"><span class="bee" aria-hidden="true">🐝</span> The cook tier of OpenDiabetic. How cooks run: <a href="https://diabeticdocs.com/crockpot-cook">DiabeticDocs → Crockpot Cook</a>.</p>
+    <p class="links">
+      <a href="https://opendiabetic.com">OpenDiabetic</a> ·
+      <a href="https://diabeticdocs.com">DiabeticDocs</a> ·
+      <a href="https://diabeticnode.com">DiabeticNode</a> ·
+      <a href="https://diabeticdatasets.com">DiabeticDatasets</a> ·
+      <a href="https://diabeticmodels.com">DiabeticModels</a> ·
+      <a href="https://diabetictruth.org">DiabeticTruth</a> ·
+      <a href="https://diabeticledger.com">DiabeticLedger</a> ·
+      <a href="https://diabeticdonation.com">DiabeticDonation</a> ·
+      <a href="https://localdiabetic.com">LocalDiabetic</a>
+    </p>
+    <p class="contact"><a href="mailto:build@opendiabetic.com">build@opendiabetic.com</a> ·
+      HQ Jupiter, Florida · <a href="tel:+15615327120">561.532.7120</a> ·
+      <a href="https://x.com/opendiabetics" rel="me">@opendiabetics</a></p>
+    <p class="motto">Models flow down · Receipts flow up · PHI crosses never.</p>
+    <p class="legal">Owned &amp; operated by <b>Swarm and Bee LLC</b> · DBA Swarm &amp; Bee AI · Florida<br>
+      UEI L9EXVH9L9VU6 · CAGE 20YM3 · D-U-N-S 138652395 · Registered &amp; active in SAM.gov<br>
+      &copy; 2026 DefendableOS · Proof of Execution.</p>
+  </div>
 </footer>
 </body>
 </html>
