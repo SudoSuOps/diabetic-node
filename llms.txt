@@ -1,0 +1,27 @@
+# DiabeticNode
+
+> The crystal-clear, hardware-by-hardware breakdown of OpenDiabetic's sovereign diabetic compute.
+> Privacy-first by construction: private health data never leaves the box; models flow down, receipts
+> flow up, PHI crosses never. It takes a swarm to run the node — the hive cooks, the vault holds, the
+> edge runs, the wearables reach the diabetic. Honest status labels: LIVE / IN BUILD / FRAMEWORK.
+
+## The three tiers
+- The Hive (cook): RTX PRO 6000 Blackwell GPU fleet — 97GB VRAM/card (194GB/rig) to slow-cook 27B anchors on owned, sovereign silicon.
+- The Vault (store): Synology NAS — the only place PHI lives at rest; a filing cabinet, not a cloud.
+- The Edge (run): Jetson Orin edge brain runs the model on-box (RAM-only PHI, receipt-only writes), plus the consumer device swarm.
+
+## The device swarm (use-cases)
+- Apple Watch: the generic nudge on your wrist (foot-check, meds, appointments) — never a record.
+- iPhone: the interface/window to the on-box brain — not a PHI store.
+- CGM & IoT sensors (Dexcom, foot-temp mats): readings reasoned over locally on the box.
+- Home Advisor: in-home voice helper, answered on-box.
+- Whisper: on-device speech-to-text; audio never leaves the box.
+
+## Pages
+- [Overview](https://diabeticnode.com/): privacy-first compute, the three tiers, the swarm, the flow.
+- [The Fleet](https://diabeticnode.com/the-fleet): why Blackwell GPUs, why Synology storage, why sovereign.
+- [The Edge](https://diabeticnode.com/the-edge): why Jetson Orin, and the consumer device swarm use-cases.
+
+## The house
+- OpenDiabetic (the foundation): https://opendiabetic.com
+- DiabeticDocs (the full platform docs): https://diabeticdocs.com

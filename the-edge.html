@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Edge — Jetson Orin & the device swarm | DiabeticNode</title>
+<meta name="description" content="The diabetic compute edge: a Jetson Orin edge brain running the model on-box, and the consumer device swarm that reaches the diabetic — Apple Watch, iPhone, CGM/IoT sensors, home voice advisor, and on-device Whisper. The real-world use-cases. It takes a swarm to run the node.">
+<link rel="canonical" href="https://diabeticnode.com/the-edge">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","name":"The Edge — Jetson Orin & the device swarm",
+ "url":"https://diabeticnode.com/the-edge","inLanguage":"en","dateModified":"2026-06-21",
+ "publisher":{"@type":"Organization","name":"OpenDiabetic","url":"https://opendiabetic.com"}}
+</script>
+</head>
+<body>
+<header>
+  <nav class="top"><strong>🐝 DiabeticNode</strong>
+    <a href="/">Overview</a> <a href="/the-fleet">The Fleet</a> <a href="/the-edge">The Edge</a>
+    <a href="https://diabeticdocs.com">Docs</a>
+  </nav>
+</header>
+
+<h1>The Edge — it takes a swarm to run the node</h1>
+<div class="lede">
+  <p>The edge is where compute meets the diabetic. No single device does the job — a <b>swarm</b> of them
+  does, each with one role, and the one law holds across all of them: <b>raw health data never leaves the
+  box.</b> One brain on the desk runs the model; a swarm of everyday devices carries the help to the person.</p>
+  <p style="margin-bottom:0"><i>"Without a swarm of help, how would I get there?"</i> — that's the founder's
+  question, answered in hardware.</p>
+</div>
+
+<h2>The edge brain — NVIDIA Jetson Orin</h2>
+<p>The on-box brain is a <b>Jetson Orin</b>. The cooked model flows down to it from the hive and runs locally.</p>
+<div class="why"><b>Why Jetson Orin:</b> it's a low-power, always-on box that sits right next to the
+diabetic and runs the small specialist model <i>on-device</i> — no cloud round-trip. It processes records
+in <b>RAM only</b>, persists <b>no PHI</b>, and mints a non-PHI receipt for every call. The diabetic gets a
+private, local AI that organizes and reminds — and structurally <i>cannot</i> leak, because its only
+file-write is the receipt ledger. <span class="st live">LIVE</span></div>
+<table>
+<tr><th>Property</th><th>Why it fits the edge</th></tr>
+<tr><td>Low power, always-on</td><td>lives in the home 24/7, no datacenter</td></tr>
+<tr><td>On-device inference</td><td>the model runs locally; queries never leave</td></tr>
+<tr><td>RAM-only PHI</td><td>records processed in memory, never written</td></tr>
+<tr><td>Receipt-only writes</td><td>the one file it writes is a non-PHI proof</td></tr>
+</table>
+
+<h2>The device swarm — how the help reaches you</h2>
+<p>Around the brain sits the consumer swarm. Each device is a limb; the brain and vault stay sovereign.
+Only <b>generic, non-PHI</b> signals ever cross to a device the diabetic carries or wears.</p>
+<div class="grid">
+  <div class="card"><h3>⌚ Apple Watch — the nudge on your wrist</h3>
+    <p>Gentle reminders land here: foot-check, meds, appointment, "your numbers trend." The watch shows the
+    <b>generic nudge you declared</b> — never a record. Detail stays behind a pointer on the box.
+    <span class="st live">LIVE</span> (nudge) · <span class="st build">IN BUILD</span> (trends)</p></div>
+  <div class="card"><h3>📱 iPhone — the interface</h3>
+    <p>The companion to the vault: talk to it, ask it to organize, get the read-back. The phone is a
+    <b>window</b> to the on-box brain, not a place PHI is stored. <span class="st build">IN BUILD</span></p></div>
+  <div class="card"><h3>🩸 CGM & IoT sensors — the signals</h3>
+    <p>Continuous glucose monitors (e.g. Dexcom), foot-temperature mats, home sensors. Readings flow to the
+    <b>vault on the box</b>, where the brain reasons over them locally — not to a vendor cloud.
+    <span class="st frame">FRAMEWORK</span></p></div>
+  <div class="card"><h3>🏠 Home Advisor — the voice in the room</h3>
+    <p>An in-home voice helper: "did I check my feet today?", "when's Dr. G?" Answered on-box, out loud,
+    privately. <span class="st build">IN BUILD</span></p></div>
+  <div class="card"><h3>🎙️ Whisper — speak, on-device</h3>
+    <p>On-device speech-to-text (faster-whisper) turns your voice into a vault action; Piper reads the answer
+    back. <b>Audio never leaves the box.</b> No cloud transcription, ever. <span class="st live">LIVE</span> (on the edge brain)</p></div>
+  <div class="card"><h3>🐝 The swarm, together</h3>
+    <p>Watch + phone + sensors + voice + brain + vault — six limbs, one node. Each useless alone; together,
+    the continuum of help a diabetic actually lives in.</p></div>
+</div>
+
+<h2>The real-world utility</h2>
+<p>This isn't compute for its own sake. The breakdown answers a person's day: a CGM dips → the brain reasons
+on-box → a generic nudge reaches the watch → the diabetic checks in → the action logs to the vault → a non-PHI
+receipt flows up so the system can prove it helped — and at no point did a record leave the home.</p>
+
+<h2>The flow, across the swarm</h2>
+<pre class="flow"><code>HIVE (Blackwell) ──models down──► EDGE BRAIN (Jetson Orin)
+                                       │  runs on-box · PHI in RAM only
+              generic nudge ◄──────────┤
+                  │                     │
+            ⌚ Watch  📱 iPhone  🩸 Sensors  🏠 Voice  🎙️ Whisper
+                  │                     │
+                  └────► VAULT (Synology) ◄──── PHI at rest, on-box only
+                                       │
+                              receipts up (non-PHI) · PHI crosses NEVER</code></pre>
+
+<footer>
+  <p><b>It takes a swarm to run the node.</b> The compute layer of
+  <a href="https://opendiabetic.com">OpenDiabetic</a> · full docs at
+  <a href="https://diabeticdocs.com">DiabeticDocs</a>.</p>
+</footer>
+</body>
+</html>

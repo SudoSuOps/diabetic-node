@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fleet — Blackwell GPUs & Synology vaults | DiabeticNode</title>
+<meta name="description" content="Why OpenDiabetic cooks on RTX PRO 6000 Blackwell GPUs and stores on Synology NAS: 97GB VRAM per card to slow-cook 27B anchors, owned silicon at sovereign-compute cost, and a vault that keeps PHI on the box. The honest hardware breakdown.">
+<link rel="canonical" href="https://diabeticnode.com/the-fleet">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","name":"The Fleet — Blackwell GPUs & Synology vaults",
+ "url":"https://diabeticnode.com/the-fleet","inLanguage":"en","dateModified":"2026-06-21",
+ "publisher":{"@type":"Organization","name":"OpenDiabetic","url":"https://opendiabetic.com"}}
+</script>
+</head>
+<body>
+<header>
+  <nav class="top"><strong>🐝 DiabeticNode</strong>
+    <a href="/">Overview</a> <a href="/the-fleet">The Fleet</a> <a href="/the-edge">The Edge</a>
+    <a href="https://diabeticdocs.com">Docs</a>
+  </nav>
+</header>
+
+<h1>The Fleet — where the models get cooked</h1>
+<div class="lede">
+  <p style="margin-bottom:0">The hive is the cook tier: owned GPUs that slow-cook the diabetic models, and
+  owned storage that holds the data they're cooked from — and the records they'll never touch. Here's the
+  hardware, and <b>why</b> each piece.</p>
+</div>
+
+<h2>The GPUs — RTX PRO 6000 Blackwell</h2>
+<p>The cook fleet runs on NVIDIA <b>RTX PRO 6000 Blackwell</b> cards (sm_120, CUDA 13). Each card carries
+<b>97 GB of VRAM</b>; a two-card rig gives <b>194 GB</b>.</p>
+<div class="why"><b>Why Blackwell:</b> a clinician-grade <b>27B anchor</b> model fits and cooks on a
+<i>single</i> 97 GB card with room for full-context training — no model-parallel gymnastics, no spilling to
+CPU. 194 GB on one rig means we cook the flagship in one place, deterministically, and keep the smaller edge
+models trivial. More headroom = bigger, more honest cooks. It's the most VRAM-per-box we can own.</div>
+<table>
+<tr><th>Spec</th><th>Value</th><th>Why it matters for diabetic cooks</th></tr>
+<tr><td>VRAM / card</td><td>97 GB</td><td>27B anchor + activations fit on one card</td></tr>
+<tr><td>VRAM / rig (2×)</td><td>194 GB</td><td>flagship cooks in one place, no sharding</td></tr>
+<tr><td>Compute</td><td>sm_120, CUDA 13</td><td>modern attention via SDPA; Triton JITs for the arch</td></tr>
+<tr><td>Ownership</td><td>ours</td><td>marginal cost ≈ kWh, not cloud markup</td></tr>
+</table>
+<p class="why" style="background:#fdf6ec;border-left-color:#b9770e"><b>Honest note:</b> Blackwell is new
+silicon. Prebuilt <code>flash_attn</code>/<code>xformers</code> kernels don't ship sm_120 yet, so we cook
+with torch-native <b>SDPA</b> attention. We caught that at canary, not mid-burn — and wrote it down. →
+<a href="https://diabeticdocs.com/crockpot-cook">Crockpot Cook</a></p>
+
+<h2>Why sovereign GPUs — not the cloud</h2>
+<div class="why"><b>Why owned:</b> we own the silicon <i>and</i> the electrons. A cook is judged on one axis —
+is it best-in-class? — never on the meter. We don't trim a 24-hour cook to save rental dollars because there
+are no rental dollars; the marginal cost is power at a sovereign basis. That's what lets the diabetic models
+be cooked slow and right. <b>Energy is a receipt, never a constraint.</b></div>
+
+<h2>The storage — Synology NAS vaults</h2>
+<p>Records live on <b>Synology NAS</b> boxes — the diabetic's own vault, on their own network.</p>
+<div class="why"><b>Why Synology:</b> the vault is the whole point of the firewall. A NAS in the home is a
+<b>filing cabinet, not a covered-entity cloud</b> — PHI sits at rest, encrypted, on hardware the diabetic
+controls, and the network is structured so raw records have no path off the box. Reliable, owned, local,
+and git-trackable so every change is logged. The cloud only ever receives non-PHI receipts and models.</div>
+<table>
+<tr><th>Role</th><th>What lives there</th><th>What never leaves</th></tr>
+<tr><td>Home vault</td><td>records, meds, labs, foot-care logs, appointments (15-folder structure)</td><td>all raw PHI</td></tr>
+<tr><td>Cook staging</td><td>open/deeded corpora, model weights, receipts</td><td>(no PHI ever staged for cooks)</td></tr>
+<tr><td>Receipts ledger</td><td>hash-chained, non-PHI proofs of every action</td><td>—</td></tr>
+</table>
+
+<h2>How the fleet connects to the edge</h2>
+<p>The hive cooks a model, proves it beats base, and the model <b>flows down</b> to the edge brain on the
+diabetic's desk. Receipts flow back up; PHI never does. That hand-off is the whole architecture. →
+<a href="/the-edge">The Edge</a></p>
+
+<footer>
+  <p>The cook tier of <a href="https://opendiabetic.com">OpenDiabetic</a>. How cooks run:
+  <a href="https://diabeticdocs.com/crockpot-cook">DiabeticDocs → Crockpot Cook</a>.</p>
+</footer>
+</body>
+</html>

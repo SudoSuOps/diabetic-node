@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiabeticNode — privacy-first diabetic compute, broken down clearly</title>
+<meta name="description" content="How OpenDiabetic's sovereign compute actually works, hardware by hardware: the Blackwell GPU cook fleet, the Synology vaults, the Jetson Orin edge brain, and the consumer edge — Apple Watch, iPhone, IoT sensors, voice. What runs where, and why. No black box.">
+<link rel="canonical" href="https://diabeticnode.com/">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","name":"DiabeticNode — the diabetic compute breakdown",
+ "url":"https://diabeticnode.com/","inLanguage":"en","dateModified":"2026-06-21",
+ "publisher":{"@type":"Organization","name":"OpenDiabetic","url":"https://opendiabetic.com"},
+ "about":"Sovereign diabetic compute: GPU fleet, storage, edge devices, and use-cases"}
+</script>
+</head>
+<body>
+<header>
+  <nav class="top"><strong>🐝 DiabeticNode</strong>
+    <a href="/">Overview</a>
+    <a href="/the-fleet">The Fleet</a>
+    <a href="/the-edge">The Edge</a>
+    <a href="https://diabeticdocs.com">Docs</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <p class="tagline">A private home node for diabetic life.</p>
+  <p class="byline">Built by OpenDiabetic.</p>
+  <p class="pillars"><b>Local records.</b> · <b>Smart reminders.</b> · <b>Trusted support.</b></p>
+</div>
+
+<h1>The crystal-clear breakdown of diabetic compute</h1>
+<div class="lede">
+  <p><b>Privacy first.</b> Not as a setting — as the foundation. A <b>diabetic node</b> is sovereign compute
+  pointed at one job: helping a diabetic, on hardware we own, with their private health data <b>never leaving
+  their box</b>. Every choice below — the GPUs, the storage, the edge — exists to keep that true. DiabeticNode
+  is the honest, hardware-by-hardware breakdown of <b>what runs where, and why.</b></p>
+  <p><b>🐝 It takes a swarm to run the node.</b> No single device does the job — the hive cooks, the vault
+  holds, the edge runs, the wearables reach you. Six limbs, one node.</p>
+  <p style="margin-bottom:0">Three tiers, one law.
+  <span class="st live">LIVE</span> = running & verified ·
+  <span class="st build">IN BUILD</span> = partly done ·
+  <span class="st frame">FRAMEWORK</span> = designed, not yet a service. No vaporware, no black box.</p>
+</div>
+
+<h2>The one law</h2>
+<p class="law"><b>Private health data never leaves the box. Models flow down, receipts flow up, PHI crosses
+never.</b> Every hardware choice below exists to honor that law. → <a href="https://diabeticdocs.com/the-firewall">The Firewall</a></p>
+
+<h2>Privacy first — by construction, not by promise</h2>
+<p>Privacy-first only means something if it's structural. On a diabetic node it's enforced by how the
+hardware is wired, not by a policy you have to trust:</p>
+<table>
+<tr><th>Guarantee</th><th>How the hardware enforces it</th></tr>
+<tr><td>Records never leave</td><td>PHI lives only on the <b>Synology vault</b> on the home network; the cloud has no path to raw records</td></tr>
+<tr><td>Inference stays local</td><td>the <b>Jetson Orin</b> edge brain runs the model on-box; queries never round-trip to a cloud</td></tr>
+<tr><td>No PHI at rest off-box</td><td>the edge brain processes records in <b>RAM only</b> and persists none</td></tr>
+<tr><td>Only non-PHI crosses</td><td>devices receive <b>generic nudges</b>; the hive receives <b>receipts</b> — never records</td></tr>
+<tr><td>Everything is provable</td><td>every action mints a hash-chained, non-PHI <b>receipt</b> — auditable without exposing data</td></tr>
+</table>
+
+<h2>The three tiers of a diabetic node</h2>
+<table>
+<tr><th>Tier</th><th>Hardware</th><th>Job</th><th>Status</th></tr>
+<tr><td><b>The Hive</b> (cook)</td><td>RTX PRO 6000 <b>Blackwell</b> GPU fleet</td><td>Slow-cook the diabetic models on owned silicon. Models flow <i>down</i> from here.</td><td><span class="st build">IN BUILD</span></td></tr>
+<tr><td><b>The Vault</b> (store)</td><td><b>Synology</b> NAS boxes</td><td>Hold the diabetic's records — the only place PHI lives at rest. Filing cabinet, not a cloud.</td><td><span class="st live">LIVE</span></td></tr>
+<tr><td><b>The Edge</b> (run)</td><td><b>Jetson Orin</b> + consumer devices</td><td>Run the model on-box; reach the diabetic via watch, phone, sensors, voice.</td><td><span class="st live">LIVE</span></td></tr>
+</table>
+<p>→ <a href="/the-fleet">The Fleet</a> breaks down the cook + vault hardware (why Blackwell, why Synology).
+→ <a href="/the-edge">The Edge</a> breaks down Jetson Orin and the real-world devices (Apple Watch, iPhone,
+IoT sensors, Home Advisor, Whisper).</p>
+
+<h2>How compute flows — and what never flows</h2>
+<pre class="flow"><code>THE HIVE  (Blackwell GPUs, owned)          cooks models  ─┐
+                                                          │  models flow DOWN
+THE EDGE  (Jetson Orin, on the diabetic's desk)  ◄────────┘
+   runs the model on-box · processes records in RAM · persists NO PHI
+        │                                   ▲
+        │ generic nudges + receipts          │ the diabetic speaks / taps / wears
+        ▼                                   │
+CONSUMER EDGE  (Apple Watch · iPhone · CGM/IoT · voice)
+        │
+        ▼
+THE VAULT  (Synology NAS) ── PHI lives here, at rest, and ONLY here
+        ▲
+        └─ receipts flow UP to the hive (non-PHI) · PHI crosses NEVER</code></pre>
+
+<h2>Why sovereign — why we own the silicon</h2>
+<div class="why"><b>Why we own it:</b> a diabetic's health data is the most personal data there is. You
+cannot rent that trust from a cloud. We own the GPUs, the storage, and the edge boxes — so PHI has no reason
+to ever leave, our marginal cost is just kilowatt-hours, and every claim is verifiable on hardware we
+control. Sovereign isn't a buzzword here; it's the only way the one law can be true.</div>
+
+<footer>
+  <p>The compute layer of <a href="https://opendiabetic.com">OpenDiabetic</a>. Full platform docs at
+  <a href="https://diabeticdocs.com">DiabeticDocs</a>.</p>
+</footer>
+</body>
+</html>
